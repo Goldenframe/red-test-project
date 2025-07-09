@@ -10,7 +10,6 @@ export default function Favourites({ favourites, setFavourites }) {
     <div className="books-container">
       {favourites && Array.isArray(favourites) ? (
         favourites.map((book) => {
-          console.log(book);
           return (
             <BookItem
               book={book}

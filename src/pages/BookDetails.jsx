@@ -40,7 +40,6 @@ export default function BookDetails({ favourites, setFavourites }) {
         const data = await fetchPromise;
         setBookDetails(data);
       } catch (err) {
-        console.error("Error fetching book details:", err);
       }
     };
 

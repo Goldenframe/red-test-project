@@ -13,6 +13,6 @@ npm start
 - React 19d
 - React Router v7
 - React Iconsd
-- React Toastify для уведомленийd
+- React Toastify для уведомлений
 - DOMPurify для санитизации HTML
 - Create React App для настройки проекта

@@ -5,14 +5,15 @@ Red - Тестовое React-приложение
 1. Установите зависимости:
 npm install
 
-3. Запустите проект в режиме разработки:
+2. Запустите проект в режиме разработки:
 npm start
-Откройте http://localhost:3000 в браузере.
+
+3. Откройте http://localhost:3000 в браузере.
 
 Используемые технологии:
-- React 19d
+- React 19
 - React Router v7
-- React Iconsd
+- React Icons
 - React Toastify для уведомлений
 - DOMPurify для санитизации HTML
 - Create React App для настройки проекта

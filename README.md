@@ -10,9 +10,9 @@ npm start
 Откройте http://localhost:3000 в браузере.
 
 Используемые технологии:
-- React 19
+- React 19d
 - React Router v7
-- React Icons
-- React Toastify для уведомлений
+- React Iconsd
+- React Toastify для уведомленийd
 - DOMPurify для санитизации HTML
 - Create React App для настройки проекта

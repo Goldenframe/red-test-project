@@ -20,10 +20,14 @@ export default function Home({ favourites, setFavourites }) {
       if (filter) url += `&filter=${filter}`;
 
       const fetchPromise = fetch(url).then((res) => res.json());
+
       toast.promise(fetchPromise, {
         pending: "Loading...",
         success: {
           render({ data }) {
+            if (!data.items) {
+              return "No books found";
+            }
             return data.items.length > 1
               ? `${data.items.length} books have been loaded`
               : `1 book has been loaded`;
@@ -35,11 +39,22 @@ export default function Home({ favourites, setFavourites }) {
           },
         },
       });
+
       const data = await fetchPromise;
 
-      if (!data.items || data.items.length < maxResult) setHasMore(false);
-      setBooks((prev) => [...prev, ...(data.items || [])]);
+      if (!data.items) {
+        setBooks([]);
+        setHasMore(false);
+        return;
+      }
+
+      if (data.items.length < maxResult) setHasMore(false);
+      setBooks((prev) =>
+        startIndex === 0 ? data.items : [...prev, ...data.items]
+      );
     } catch (err) {
+      setBooks([]);
+      setHasMore(false);
     } finally {
       setLoading(false);
     }
@@ -102,17 +117,16 @@ export default function Home({ favourites, setFavourites }) {
         <option value="partial">partial</option>
       </select>
       <div className="books-container">
-        {books &&
-          books.length > 0 &&
-          books.map((book) => (
-            <BookItem
-              key={book.id}
-              book={book}
-              favourites={favourites}
-              setFavourites={setFavourites}
-            />
-          ))}
-        {!loading && books.length === 0 && <p>Книг нет</p>}{" "}
+        {books.length > 0
+          ? books.map((book) => (
+              <BookItem
+                key={book.id}
+                book={book}
+                favourites={favourites}
+                setFavourites={setFavourites}
+              />
+            ))
+          : !loading && <div className="no-books-message">No books found</div>}
       </div>
     </div>
   );
